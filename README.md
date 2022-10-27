@@ -20,4 +20,4 @@ No need to install any software.
 ## How To Use ?
 No login required.
 
-Python practice and an introduction to Flask.
+Python and Flask practice.

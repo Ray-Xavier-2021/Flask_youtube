@@ -24,7 +24,7 @@ CHANNELS = {
 }
 
 # Active Channel
-ACTIVE_CHANNEL = CHANNELS['pm']
+ACTIVE_CHANNEL = CHANNELS['cleverprogrammer']
 
 # Data Structure
 data = {

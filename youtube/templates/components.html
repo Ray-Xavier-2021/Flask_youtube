@@ -10,8 +10,11 @@
   <div class="card">
     <!-- Thumbnail -->
     <div class="thumbnailContainer">
-      <!-- Image -->
-      <img class="thumbnail" src="{{ video['thumbnails'] | highest_quality_img }}" />
+      <!-- Link -->
+      <a href="https://www.youtube.com/watch?v={{video['videoId']}}">
+        <!-- Image -->
+        <img class="thumbnail" src="{{ video['thumbnails'] | highest_quality_img }}" />
+      </a>
     </div>
     <!-- Info Container -->
     <div class="infoContainer">
@@ -19,14 +22,17 @@
       <div class="channelLogoContainer">
         <img class="channelLogo" src="https://avatars.githubusercontent.com/u/60327839?s=280&v=4" alt="channel" />
       </div>
-      <!-- Info -->
-      <div class="info">
-        <!-- Video Title -->
-        <p>{{ video['title'] }}</p>
-        <span>Clever Programmer</span><br>
-        <!-- Views && Published Time Text -->
-        <span>{{ video['stats']['views'] | numberize }} views • {{ video['publishedTimeText'] }}</span>
-      </div>
+      <!-- Link -->
+      <a href="https://www.youtube.com/watch?v={{video['videoId']}}">
+        <!-- Info -->
+        <div class="info">
+          <!-- Video Title -->
+          <p>{{ video['title'] }}</p>
+          <span>Clever Programmer</span><br>
+          <!-- Views && Published Time Text -->
+          <span>{{ video['stats']['views'] | numberize }} views • {{ video['publishedTimeText'] }}</span>
+        </div>
+      </a>
     </div>
   </div>
 {%- endmacro %}

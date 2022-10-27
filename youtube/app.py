@@ -1,13 +1,8 @@
 # Import jsonify
 from flask import Flask, jsonify, render_template, url_for
-
-# Import pprint to format data structure in console
 import pprint
-
-# Import requests library
 import requests
-
-# Create 'pretty-print' instance
+from numerize.numerize import numerize
 pp = pprint.PrettyPrinter(indent=2)
 
 app = Flask(__name__)
@@ -20,12 +15,15 @@ CHANNELS = {
   'pm': 'UC3DkFux8Iv-aYnTRWzwaiBA',
 }
 
+# Active Channel
+ACTIVE_CHANNEL = CHANNELS['cleverprogrammer']
+
 @app.route('/')
 def index():
   # Request API info
   url = "https://youtube138.p.rapidapi.com/channel/videos/"
 
-  querystring = {"id": CHANNELS["cleverprogrammer"],"hl":"en","gl":"US"}
+  querystring = {"id": ACTIVE_CHANNEL,"hl":"en","gl":"US"}
 
   headers = {
     "X-RapidAPI-Key": "aa2c2d1883mshe180f57453bf0a1p170092jsn98fe1fc8e5ca",
@@ -49,6 +47,16 @@ def index():
   
   # Return rendered index template w/ videos displayed
   return render_template('index.html', videos=videos, video=video)
+
+# Create a template filter function that numerizes hig numbers => 4000 = 4k
+@app.template_filter()
+def numberize(views):
+  return numerize(views, 1)
+
+# Create a template filter that returns highest quality video [3] if at least 4 available else lowest quality [0]
+@app.template_filter()
+def highest_quality_img(thumbnails):
+  return thumbnails[3]['url'] if len(thumbnails) >= 4 else thumbnails[0]['url']
 
 # Local Machine
 app.run(debug=True)

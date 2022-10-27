@@ -68,7 +68,7 @@ data = {
 # pprint.pprint(data['contents'])
 
 # Print first video in contents 
-first_video = data['contents'][0]['video']
+# first_video = data['contents'][0]['video']
 
 # print(first_video)
 
@@ -102,11 +102,14 @@ def index():
   contents = data['contents']
 
   # Use list comprehension to get only videos if they have a publish time text
-  videos = [video for video in contents if video['video']['publishedTimeText']]
+  videos = [video['video'] for video in contents if video['video']['publishedTimeText']]
   print(videos)
 
+  # First video
+  video = videos[0]
+  
   # Return rendered index template w/ videos displayed
-  return render_template('index.html', videos=videos)
+  return render_template('index.html', videos=videos, video=video)
 
 # Replit config 
 # app.run(host='0.0.0.0', port=81)

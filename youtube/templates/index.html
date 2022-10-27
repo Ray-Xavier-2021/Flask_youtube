@@ -1,1 +1,10 @@
-<h2>VIDEOS</h2>
+<!-- Video Title -->
+<h2>{{ video['title'] }}</h2>
+<!-- Published Time -->
+<h2>{{ video['publishedTimeText'] }}</h2>
+<!-- Views -->
+<h2>{{ video['stats']['views'] }}</h2>
+<!-- Image -->
+<img src="{{ video['thumbnails'][0]['url'] }}" >
+
+{{ video }}

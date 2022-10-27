@@ -4,8 +4,7 @@ This project was built by me using Python, RapidAPI and Flask. It will be added 
 
 [Live Deployment](https://flask-api-youtube-app.ray-xavier-2021.repl.co/)
 
-![coming-soon](https://user-images.githubusercontent.com/78431899/198152619-7f76eb54-dd28-45b6-b407-cd010dc31df7.jpg)
-
+![flask_youtube](https://user-images.githubusercontent.com/78431899/198408386-9f3e0e54-f975-45c8-bac1-305f85501202.png)
 
 
 ## Technologies Used`

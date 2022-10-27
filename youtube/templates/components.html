@@ -1,0 +1,32 @@
+<!-- 
+  THIS FIE IS USED FOR MACROS: 
+  Macros are similar to functions in many programming languages. We use them to encapsulate logic used to perform repeatable actions. Macros can take arguments or be used without them.
+  Inside of macros we can use any of the Jinja features and constructs. Result of running macro is some text. You can essentially treat macro as one big evaluation statement that also allows parametrization.
+  As you can see above we start macro with {% macro macro_name(arg1, arg2) %} and we end it with {% endmacro %}. Arguments are optional.
+  Anything you put in between opening and closing tags will be processed and rendered at a location where you called the macro.
+  Once we defined macro we can use it anywhere in our template. We can directly insert results by using {{ macro_name() }} substitution syntax. We can also use it inside other constructs like if..else blocks or for loops. You can even pass macros to other macros
+-->
+{% macro card(video) -%}
+  <div class="card">
+    <!-- Thumbnail -->
+    <div class="thumbnailContainer">
+      <!-- Image -->
+      <img class="thumbnail" src="{{ video['thumbnails'][0]['url'] }}" />
+    </div>
+    <!-- Info Container -->
+    <div class="infoContainer">
+      <!-- Channel logo -->
+      <div class="channelLogoContainer">
+        <img class="channelLogo" src="https://avatars.githubusercontent.com/u/60327839?s=280&v=4" alt="channel" />
+      </div>
+      <!-- Info -->
+      <div class="info">
+        <!-- Video Title -->
+        <p>{{ video['title'] }}</p>
+        <span>Clever Programmer</span><br>
+        <!-- Views && Published Time Text -->
+        <span>{{ video['stats']['views'] }} views • {{ video['publishedTimeText'] }}</span>
+      </div>
+    </div>
+  </div>
+{%- endmacro %}

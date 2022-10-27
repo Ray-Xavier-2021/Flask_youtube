@@ -1,10 +1,12 @@
-<!-- Video Title -->
-<h2>{{ video['title'] }}</h2>
-<!-- Published Time -->
-<h2>{{ video['publishedTimeText'] }}</h2>
-<!-- Views -->
-<h2>{{ video['stats']['views'] }}</h2>
-<!-- Image -->
-<img src="{{ video['thumbnails'][0]['url'] }}" >
+<!-- Import card macro from components for use -->
+{% from 'components.html' import card %}
 
-{{ video }}
+<!-- CSS Stylesheet -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+<!-- Render card component macro -->
+<!-- Loop though videos  -->
+{% for video in videos %}
+  <!-- Display Video -->
+  {{ card(video) }}
+{% endfor %}

@@ -1,5 +1,5 @@
 # Import jsonify
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template, url_for
 
 # Import pprint to format data structure in console
 import pprint
@@ -19,8 +19,6 @@ CHANNELS = {
   'mkbhd': 'UCBJycsmduvYEL83R_U4JriQ',
   'pm': 'UC3DkFux8Iv-aYnTRWzwaiBA',
 }
-
-# Data Structure - See main.py
 
 @app.route('/')
 def index():
@@ -43,12 +41,14 @@ def index():
   contents = data['contents']
 
   # Use list comprehension to get only videos if they have a publish time text
-  videos = [video for video in contents if video['video']['publishedTimeText']]
+  videos = [video['video'] for video in contents if video['video']['publishedTimeText']]
   print(videos)
-  return jsonify(videos)
 
-# Replit config 
-# app.run(host='0.0.0.0', port=81)
+  # First video
+  video = videos[0]
+  
+  # Return rendered index template w/ videos displayed
+  return render_template('index.html', videos=videos, video=video)
 
 # Local Machine
 app.run(debug=True)

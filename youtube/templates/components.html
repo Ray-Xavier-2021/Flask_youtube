@@ -11,7 +11,7 @@
     <!-- Thumbnail -->
     <div class="thumbnailContainer">
       <!-- Image -->
-      <img class="thumbnail" src="{{ video['thumbnails'][0]['url'] }}" />
+      <img class="thumbnail" src="{{ video['thumbnails'] | highest_quality_img }}" />
     </div>
     <!-- Info Container -->
     <div class="infoContainer">
@@ -25,7 +25,7 @@
         <p>{{ video['title'] }}</p>
         <span>Clever Programmer</span><br>
         <!-- Views && Published Time Text -->
-        <span>{{ video['stats']['views'] }} views • {{ video['publishedTimeText'] }}</span>
+        <span>{{ video['stats']['views'] | numberize }} views • {{ video['publishedTimeText'] }}</span>
       </div>
     </div>
   </div>

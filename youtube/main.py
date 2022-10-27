@@ -7,6 +7,9 @@ import pprint
 # Import requests library
 import requests
 
+# Import numerize library
+from numerize.numerize import numerize
+
 # Create 'pretty-print' instance
 pp = pprint.PrettyPrinter(indent=2)
 
@@ -19,6 +22,9 @@ CHANNELS = {
   'mkbhd': 'UCBJycsmduvYEL83R_U4JriQ',
   'pm': 'UC3DkFux8Iv-aYnTRWzwaiBA',
 }
+
+# Active Channel
+ACTIVE_CHANNEL = CHANNELS['pm']
 
 # Data Structure
 data = {
@@ -86,7 +92,7 @@ def index():
   # Request API info
   url = "https://youtube138.p.rapidapi.com/channel/videos/"
 
-  querystring = {"id": CHANNELS["cleverprogrammer"],"hl":"en","gl":"US"}
+  querystring = {"id": ACTIVE_CHANNEL,"hl":"en","gl":"US"}
 
   headers = {
     "X-RapidAPI-Key": "aa2c2d1883mshe180f57453bf0a1p170092jsn98fe1fc8e5ca",
@@ -110,6 +116,17 @@ def index():
   
   # Return rendered index template w/ videos displayed
   return render_template('index.html', videos=videos, video=video)
+
+# Create a template filter function that numerizes hig numbers => 4000 = 4k
+@app.template_filter()
+def numberize(views):
+  return numerize(views, 1)
+
+# Create a template filter that returns highest quality video [3] if at least 4 available else lowest quality [0]
+@app.template_filter()
+def highest_quality_img(thumbnails):
+  return thumbnails[3]['url'] if len(thumbnails) >= 4 else thumbnails[0]['url']
+
 
 # Replit config 
 # app.run(host='0.0.0.0', port=81)

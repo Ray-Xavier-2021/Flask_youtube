@@ -5,8 +5,10 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 
 <!-- Render card component macro -->
-<!-- Loop though videos  -->
-{% for video in videos %}
-  <!-- Display Video -->
-  {{ card(video) }}
-{% endfor %}
+<div id="home">
+  <!-- Loop though videos  -->
+  {% for video in videos %}
+    <!-- Display Video -->
+    {{ card(video) }}
+  {% endfor %}
+</div>
